@@ -2,6 +2,7 @@ package com.deloitte.irs.solutionslab.webapps.prd.solutionslabuserservice.contro
 
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("user-service")
 public class UserController {
 
+	@Value("${user}")
+	private String name;
+	
+	@Value("${email}")	
+	private String email;
+	
+	@Value("${motto}")
+	private String motto;
+	
 	@GetMapping(value = "/api/{id}", produces = "application/json")
 	public ResponseEntity<String> getUser(@PathVariable String id){
 
@@ -29,5 +39,10 @@ public class UserController {
 	@PostMapping(path = "/api", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<String> createUsers(@RequestBody Map<String, Object> input) {
 	    return new ResponseEntity<>("Added a new Users: " + input.get("id"), HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "api/props", produces = "applicaiton/json")
+	public ResponseEntity<String> getUserProps(){
+		return new ResponseEntity<String>(name + "-" + email + "-" + motto, HttpStatus.OK);
 	}
 }
