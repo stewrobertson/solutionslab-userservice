@@ -41,7 +41,7 @@ public class UserController {
 	    return new ResponseEntity<>("Added a new Users: " + input.get("id"), HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "api/props", produces = "applicaiton/json")
+	@GetMapping(value = "api/props", produces = "application/json")
 	public ResponseEntity<String> getUserProps(){
 		return new ResponseEntity<String>(name + "-" + email + "-" + motto, HttpStatus.OK);
 	}

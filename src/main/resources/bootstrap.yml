@@ -10,7 +10,7 @@ spring:
       maxInterval: 10000
       maxAttempts: 20
     uri: http://localhost:8888
-
+    profiles: default,values
 ---
 spring.profiles: docker
 
